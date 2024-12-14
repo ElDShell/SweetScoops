@@ -50,19 +50,12 @@ i will publish the website in pyhtonanywhere soon . you can access it by visitin
 ## PayPal Sandbox Setup
 To test the PayPal integration, use the provided sandbox credentials. Replace the credentials in the settings file with your PayPal sandbox client ID and secret if necessary.
 
-## Future Improvements
-- Add user authentication for personalized shopping experiences.
-- Enhance the frontend for a more seamless user experience.
-- Expand payment options beyond PayPal and cash on delivery.
-
 ## Contributions
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
 ## Acknowledgments
-- Special thanks to the open-source community for providing resources and tools that made this project possible.
+- Special thanks to htmlcodex who created the frontend
+- Special thanks for python for being python :)
 
 Feel free to explore, contribute, and enjoy SweetScoops!
 
