@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- Header Start -->
+<div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">Cart</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="{% url 'home' %}">Home</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">Cart</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <h1 class="section-title position-relative text-center mb-5">{{cart}}</h1>
+        </div>
+    </div>
+    <div class="row">    
+        <!--Cart Items -->
+        {% for item in cart.cart_items.all %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card cart-item p-3 shadow-sm">
+                <div class="text-center">
+                    <img src="{{ item.product.img.url }}" alt="Product Image" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;">
+                </div>
+                <h5 class="text-center">{{item.name}}</h5>
+                <p id="item-{{item.id}}-price" class="item-price text-center text-muted">${{item.price}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <button class="decrease-btn btn btn-sm btn-outline-primary" data-cart-item-id="{{ item.id }}">-</button>
+                        <span id="item-{{item.id}}-quantity" class="mx-2">{{item.quantity}}</span>
+                        <button class="increase-btn btn btn-sm btn-outline-primary" data-cart-item-id="{{ item.id }}">+</button>
+                    </div>
+                    <form action="{% url 'cart_item_remove' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete_cart_item" value="{{item.id}}">
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-right mt-4">
+        <h4 class="cart-price">Total: ${{ cart.total_price }}</h4>
+        <form action="{% url 'cart_to_order' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ cart.id }}" name="cart_id">
+            <button type="submit" class="btn btn-primary">Checkout</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock scripts %}

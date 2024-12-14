@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/messages.css' %}">
+</head>
+<body>
+<!-- Messages Start -->
+    {% if messages %}
+      {% for message in messages  %}
+        {% if 'success' in message.tags %}
+          <!-- Success alert -->
+          <div class="custom-alert custom-alert-success">
+              <div class="message"><strong>Success!</strong> {{ message }} </div>
+              <div class="close-container">
+                  <button class="close-btn" onclick="closeAlert(this)">×</button>
+              </div>
+          </div>
+        {% elif 'error' in message.tags  %}
+          <!-- Error alert -->
+          <div class="custom-alert custom-alert-error">
+              <div class="message"><strong>Error!</strong> {{ message }}</div>
+              <div class="close-container">
+                  <button class="close-btn" onclick="closeAlert(this)">×</button>
+              </div>
+          </div>
+        {% elif 'info' in message.tags %}
+          <!-- Info alert -->
+          <div class="custom-alert custom-alert-info">
+              <div class="message"><strong>Info:</strong> {{ message }}</div>
+              <div class="close-container">
+                  <button class="close-btn" onclick="closeAlert(this)">×</button>
+              </div>
+          </div>
+        {% elif 'warning' in message.tags %}
+          <!-- Warning alert -->
+          <div class="custom-alert custom-alert-warning">
+              <div class="message"><strong>Warning!</strong> {{ message }}</div>
+              <div class="close-container">
+                  <button class="close-btn" onclick="closeAlert(this)">×</button>
+              </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+<!-- Messages End -->
+
+    <section class="forms-section">
+        <h1 class="section-title">SweetScoops</h1>
+        <div class="forms">
+          <div class="form-wrapper is-active">
+            <button type="button" class="switcher switcher-login">
+              Login
+              <span class="underline"></span>
+            </button>
+            <form action="{% url 'login' %}" class="form form-login" method="post">
+              {% csrf_token %}
+              <fieldset>
+                <legend>Please, enter your username and password for login.</legend>
+                <div class="input-block">
+                  <label for="login-email">Username</label>
+                  <input id="username" name="username" type="username" required>
+                </div>
+                <div class="input-block">
+                  <label for="login-password">Password</label>
+                  <input id="password" name="password" type="password" required>
+                </div>
+              </fieldset>
+              <button type="submit" class="btn-login">Login</button>
+            </form>
+          </div>
+          <div class="form-wrapper">
+            <button type="button" class="switcher switcher-signup">
+              Sign Up
+              <span class="underline"></span>
+            </button>
+            <form action="{% url 'register' %}" method="post" class="form form-signup">
+              {% csrf_token %}
+              <fieldset>
+                <legend>Please, enter your email,username, password and password confirmation for sign up.</legend>
+                <div class="input-block">
+                  <label for="signup-email">E-mail</label>
+                  <input id="signup-email" name="email" type="email" required>
+                </div>
+                <div class="input-block">
+                  <label for="signup-username">Username</label>
+                  <input id="signup-username" name="username" type="username" required>
+                </div>
+                <div class="input-block">
+                  <label for="signup-password">Password</label>
+                  <input id="signup-password" name="password1" type="password" required>
+                </div>
+                <div class="input-block">
+                  <label for="signup-password-confirm">Confirm password</label>
+                  <input id="signup-password-confirm" name="password2" type="password" required>
+                </div>
+              </fieldset>
+              <button type="submit" class="btn-login">Continue</button>
+            </form>
+          </div>
+        </div>
+    </section>
+</body>
+<script src="{% static 'js/login.js' %}"></script>
+<script>   
+  function closeAlert(button) {
+      var alert = button.closest('.custom-alert');  // Use closest to ensure we select the correct alert
+      alert.classList.add('fade-out');  // Add fade-out class to trigger animation
+      setTimeout(function() {
+          alert.style.display = 'none';  // Hide the alert after the animation ends
+      }, 500);  // Time in ms, should match the animation duration
+  }
+</script>
+</html>
+

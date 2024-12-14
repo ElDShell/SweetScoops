@@ -1,0 +1,370 @@
+body{
+  margin-top:20px;
+  color: #1a202c;
+  text-align: left;
+  background-color: #e2e8f0;    
+}
+.main-body {
+  padding: 15px;
+}
+.card {
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem;
+}
+
+.gutters-sm {
+  margin-right: -8px;
+  margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.mb-3, .my-3 {
+  margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+  background-color: #e2e8f0;
+}
+.h-100 {
+  height: 100%!important;
+}
+.shadow-none {
+  box-shadow: none!important;
+}
+
+.profile-img-container {
+  position: relative; /* Required for positioning the icon relative to the image */
+  display: inline-block;
+}
+
+.profile-img {
+  transition: filter 0.3s ease; /* Smooth transition for filter property */
+}
+
+.profile-img:hover {
+  filter: brightness(70%); /* Decrease brightness on hover */
+}
+
+/* Style for the icon */
+.edit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the icon */
+  font-size: 24px; /* Adjust icon size */
+  color: white; /* Icon color */
+  opacity: 0; /* Initially hide the icon */
+  transition: opacity 0.3s ease; /* Smooth transition for icon visibility */
+  pointer-events: none; /* Prevent the icon from triggering hover events */
+}
+
+/* Show the icon when hovering over the container (not the image) */
+.profile-img-container:hover .edit-icon {
+  opacity: 1; /* Show the icon when hovering over the container */
+  pointer-events: auto; /* Allow interaction with the icon */
+}
+
+.profile-img-container:hover .profile-img {
+  filter: brightness(70%); /* Decrease brightness when hovering the image */
+}
+
+.facebook{
+  color: #0866ff;
+}
+.instagram{
+  color: #fb0966;
+}
+.twitter{
+  color: #1c9cea;
+}
+
+.hover-box {
+  position: relative; /* Position the pencil icon relative to this container */
+}
+
+.edit-icon-overview {
+  position: absolute;
+  top: 50%; /* Center the icon vertically */
+  right: 20px; /* Move the icon 10px from the right edge of the container */
+  transform: translateY(-50%); /* Adjust vertical centering */
+  font-size: 18px; /* Adjust icon size */
+  color: #F28D8D; /* Default color */
+  opacity: 0; /* Hide the icon initially */
+  transition: opacity 0.3s ease; /* Smooth transition for visibility */
+}
+
+.hover-box:hover .edit-icon-overview {
+  opacity: 1; /* Show the icon on hover */
+  color: #f54b81;
+   /* Optionally change the color on hover */
+}
+
+#full-name-edit {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  display: flex; /* Arrange input fields and buttons inline */
+  gap: 10px; /* Space between inputs and buttons */
+  align-items: center; /* Vertically align inputs and buttons */
+  justify-content: flex-start; /* Align everything to the start of the container */
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+/* Styling the input fields */
+#full-name-edit input[type="text"] {
+  width: 42%; /* Adjust width for a balanced layout */
+  padding: 5px 10px; /* Inner spacing */
+  font-size: 14px; /* Adjust text size */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px; /* Rounded edges */
+  outline: none; /* Remove focus outline */
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+#full-name-edit input[type="text"]:focus {
+  border-color: #F28D8D; /* Highlight color on focus */
+}
+
+/* Styling the cancel and submit buttons */
+/* Styling for buttons with FontAwesome icons */
+#full-name-edit button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* Font size for icons */
+  padding: 5px 10px;
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+/* Cancel button styles */
+#full-name-edit .cancel-btn {
+  color: #bbb; /* Neutral color for cancel */
+  margin-right: 10px; /* Space between cancel and submit button */
+}
+
+#full-name-edit .cancel-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+
+/* Submit button styles */
+#full-name-edit .submit-btn {
+  color: #F28D8D; /* Primary color for submit */
+}
+
+#full-name-edit .submit-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+
+/*email start*/
+#email-edit {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  display: flex; /* Arrange input fields and buttons inline */
+  gap: 10px; /* Space between inputs and buttons */
+  align-items: center; /* Vertically align inputs and buttons */
+  justify-content: flex-start; /* Align everything to the start of the container */
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+/* Styling the input fields */
+#email-edit input[type="email"] {
+  width: 75%; /* Adjust width for a balanced layout */
+  padding: 5px 10px; /* Inner spacing */
+  font-size: 14px; /* Adjust text size */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px; /* Rounded edges */
+  outline: none; /* Remove focus outline */
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+#email-edit input[type="email"]:focus {
+  border-color: #F28D8D; /* Highlight color on focus */
+}
+
+/* Styling the cancel and submit buttons */
+/* Styling for buttons with FontAwesome icons */
+#email-edit button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* Font size for icons */
+  padding: 5px 10px;
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+/* Cancel button styles */
+#email-edit .cancel-btn {
+  color: #bbb; /* Neutral color for cancel */
+  margin-right: 10px; /* Space between cancel and submit button */
+}
+
+#email-edit .cancel-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+
+/* Submit button styles */
+#email-edit .submit-btn {
+  color: #F28D8D; /* Primary color for submit */
+}
+
+#email-edit .submit-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+
+/*
+--phone start
+*/
+#phone-edit {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  display: flex; /* Arrange input fields and buttons inline */
+  gap: 10px; /* Space between inputs and buttons */
+  align-items: center; /* Vertically align inputs and buttons */
+  justify-content: flex-start; /* Align everything to the start of the container */
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+/* Styling the input fields */
+#phone-edit input[type="text"] {
+  width: 55%; /* Adjust width for a balanced layout */
+  padding: 5px 10px; /* Inner spacing */
+  font-size: 14px; /* Adjust text size */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px; /* Rounded edges */
+  outline: none; /* Remove focus outline */
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+#phone-edit input[type="text"]:focus {
+  border-color: #F28D8D; /* Highlight color on focus */
+}
+
+/* Styling the cancel and submit buttons */
+/* Styling for buttons with FontAwesome icons */
+#phone-edit button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* Font size for icons */
+  padding: 5px 10px;
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+/* Cancel button styles */
+#phone-edit .cancel-btn {
+  color: #bbb; /* Neutral color for cancel */
+  margin-right: 10px; /* Space between cancel and submit button */
+}
+
+#phone-edit .cancel-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+
+/* Submit button styles */
+#phone-edit .submit-btn {
+  color: #F28D8D; /* Primary color for submit */
+}
+
+#phone-edit .submit-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+
+/*
+--phone end
+*/
+
+/*
+--address start
+*/
+#address-edit {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  display: flex; /* Arrange input fields and buttons inline */
+  gap: 10px; /* Space between inputs and buttons */
+  align-items: center; /* Vertically align inputs and buttons */
+  justify-content: flex-start; /* Align everything to the start of the container */
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+/* Styling the input fields */
+#address-edit input[type="text"] {
+  width: 75%; /* Adjust width for a balanced layout */
+  padding: 5px 10px; /* Inner spacing */
+  font-size: 14px; /* Adjust text size */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px; /* Rounded edges */
+  outline: none; /* Remove focus outline */
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+#address-edit input[type="text"]:focus {
+  border-color: #F28D8D; /* Highlight color on focus */
+}
+
+/* Styling the cancel and submit buttons */
+/* Styling for buttons with FontAwesome icons */
+#address-edit button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* Font size for icons */
+  padding: 5px 10px;
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+/* Cancel button styles */
+#address-edit .cancel-btn {
+  color: #bbb; /* Neutral color for cancel */
+  margin-right: 10px; /* Space between cancel and submit button */
+}
+
+#address-edit .cancel-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+
+/* Submit button styles */
+#address-edit .submit-btn {
+  color: #F28D8D; /* Primary color for submit */
+}
+
+#address-edit .submit-btn:hover {
+  color: #f54b81; /* Highlight on hover */
+}
+/*
+--address end
+*/

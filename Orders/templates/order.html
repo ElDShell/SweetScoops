@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">{{order.owner}} Order</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="{% url 'home' %}">Home</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">Order</p>
+
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-primary">Your Order</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <!-- Card Header with Background Color -->
+                <div class="card-header text-white 
+                    {% if order.order_status == 'pending' %} bg-warning
+                    {% elif order.order_status == 'confirmed' %} bg-success
+                    {% elif order.order_status == 'shipped' %} bg-info
+                    {% elif order.order_status == 'delivered' %} bg-primary
+                    {% elif order.order_status == 'cancelled' %} bg-danger
+                    {% endif %}">
+                    <h5 class="card-title mb-0">Order ID: {{ order.id }}</h5>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body bg-light">
+                    <p class="card-text">
+                        <strong>Status:</strong>
+                        <span class="badge 
+                            {% if order.order_status == 'pending' %} bg-warning
+                            {% elif order.order_status == 'confirmed' %} bg-success 
+                            {% elif order.order_status == 'shipped' %} bg-info
+                            {% elif order.order_status == 'delivered' %} bg-primary
+                            {% elif order.order_status == 'cancelled' %} bg-danger
+                            {% endif %}">
+                            {{ order.get_order_status_display }}
+                        </span>
+                    </p>
+                    <p class="card-text"><strong>Total Price:</strong> ${{ order.total_price }}</p>
+
+                    <!-- List of Products -->
+                    <h5 class="mt-4 text-secondary">Ordered Products:</h5>
+                    <ul class="list-group mb-4">
+                        {% for item in order.order_items.all %}
+                            <li class="list-group-item d-flex align-items-center">
+                                <img src="{{ item.product.img.url }}" alt="{{ item.product.name }}" style="width: 50px; height: 50px; object-fit: cover;" class="mr-3">
+                                <div>
+                                    <b>{{ item.product.name }}</b><br>
+                                    <span class="text-muted">(x{{ item.quantity }})</span> - ${{ item.price }}
+                                </div>
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item">No products found in this order.</li>
+                        {% endfor %}
+                    </ul>
+
+                    
+                    <!-- Buttons for Pending Orders -->
+                    {% if order.order_status == 'pending' %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" name="action" value="confirm" class="btn btn-success btn-sm shadow-sm px-4">
+                                Confirm Order
+                            </button>
+                            <button type="submit" name="action" value="cancel" class="btn btn-danger btn-sm shadow-sm px-4">
+                                Cancel Order
+                            </button>
+                        </div>
+                    </form>
+                    {% elif order.order_status == 'confirmed' %}
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-success btn-sm shadow-sm px-4" href="{% url 'order_payment' signed_url=order.generate_signed_url %}">Pay Now</a>                    <form method="POST" id="delete-order-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="delete">
+                            <div class="d-flex">
+                                <button onclick="deleteOrder(event)" class="btn btn-danger btn-sm shadow-sm px-4">
+                                    Cancel Order
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    {% else %}
+                    <form method="POST" id="delete-order-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="delete">
+                        <div class="d-flex">
+                            <button onclick="deleteOrder(event)" class="btn btn-danger btn-sm shadow-sm px-4">
+                                Cancel Order
+                            </button>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+                <!-- Card Footer -->
+                <div class="card-footer text-muted text-center">
+                    Created on: {{ order.created_at|date:"F j, Y, g:i a" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    function deleteOrder(event){
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text:'This order will be deleted',
+            icon:'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Delete order',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed){
+                document.getElementById('delete-order-form').submit();
+            }
+        });
+    }
+</script>
+{% endblock scripts %}
