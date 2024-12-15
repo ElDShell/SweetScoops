@@ -66,3 +66,9 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 Feel free to explore, contribute, and enjoy SweetScoops!
 
+
+## Note
+
+I am still a beginner in web development. If you have any advice or suggestions, please feel free to email me at:
+
+[eld25351@gmail.com](mailto:eld25351@gmail.com)
