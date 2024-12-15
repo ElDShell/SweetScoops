@@ -52,7 +52,7 @@ You can access the website on PythonAnywhere using the following link:
 [SweetScoops Website](https://eldshell.pythonanywhere.com/home/)
 
 To log in, use the following credentials:
-- **Username**: any value
+- **Username**: anything
 - **Password**: `123anything123`
 ## PayPal Sandbox Setup
 To test the PayPal integration, use the provided sandbox credentials. Replace the credentials in the settings file with your PayPal sandbox client ID and secret if necessary.
