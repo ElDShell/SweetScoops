@@ -46,7 +46,9 @@ The backend of SweetScoops was includes the following functionalities:
 - **Payment Integration:** PayPal (sandbox mode)
 
 ## How to Use
-i will publish the website in pyhtonanywhere soon . you can access it by visiting the website link.
+[Link to website in pythonanywhere](https://eldshell.pythonanywhere.com/home/).
+Username: anything
+password : 123anything123
 ## PayPal Sandbox Setup
 To test the PayPal integration, use the provided sandbox credentials. Replace the credentials in the settings file with your PayPal sandbox client ID and secret if necessary.
 
